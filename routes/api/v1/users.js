@@ -33,10 +33,11 @@ router.post('/', function(req,res) {
   }
 });
 
-// Helpers
+
 // function generateApiKey() {
 //   crypto.randomBytes(32, (err, buf) => {
 //     if (err) throw err;
+//
 //     console.log(buf.toString('hex'))
 //     return buf.toString('hex');
 //   })
