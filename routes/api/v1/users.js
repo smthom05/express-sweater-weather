@@ -6,7 +6,6 @@ const hat = require('hat')
 var router = express.Router();
 var User = require('../../../models').User;
 
-
 // Account Creation
 
 router.post('/', function(req,res) {
