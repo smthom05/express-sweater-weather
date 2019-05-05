@@ -15,33 +15,46 @@ router.get('/', function(req, res) {
     })
     .then(user => {
       if (user !== null) {
-        var geocodeUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=" + req.query.location + "&key=" + process.env.GEOCODE_KEY;
-
-        fetch(geocodeUrl)
-        .then(response => {return response.json();})
-        .then(result => {
-          var lat = result.results[0].geometry.location.lat
-          var lng = result.results[0].geometry.location.lng
-          var forecastUrl = `https://api.darksky.net/forecast/${process.env.DARK_SKY_KEY}/${lat},${lng}?exclude=minutely,alerts,flags`;
-
-          fetch(forecastUrl)
-          .then((forecastResponse) => {
-            return forecastResponse.json();
-          })
+        getGeocodeData(req.query.location)
+        .then(response => {
+          getForecastData(response)
           .then(forecastResult => {
             res.status(200).send(forecastResult)
           })
-          .catch(err => { console.log(err) })
+          .catch(err => { res.send({err})})
         })
        } else {
          res.setHeader("Content-Type", "application/json");
          res.status(401).send("Invalid Api Key");
       };
-    });
+    })
   } else {
     res.setHeader("Content-Type", "application/json");
     res.status(401).send("Invalid Api Key");
   };
 });
+
+
+// Helper Functions
+
+function getGeocodeData(location) {
+  var geocodeUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=" + location + "&key=" + process.env.GEOCODE_KEY;
+
+  return fetch(geocodeUrl)
+  .then(response => {
+    return response.json();
+  }).then(result => {
+    var lat = result.results[0].geometry.location.lat
+    var lng = result.results[0].geometry.location.lng
+    return forecastUrl = `https://api.darksky.net/forecast/${process.env.DARK_SKY_KEY}/${lat},${lng}?exclude=minutely,alerts,flags`;
+  });
+};
+
+function getForecastData(url) {
+  return fetch(url)
+  .then((forecastResponse) => {
+    return forecastResponse.json();
+  });
+};
 
 module.exports = router;
