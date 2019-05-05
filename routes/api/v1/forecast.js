@@ -3,8 +3,6 @@ var router = express.Router();
 var pry = require('pryjs');
 var fetch = require('node-fetch');
 var User = require('../../../models').User;
-
-
 // var Forecast = require('../../../models').Forecast;
 
 // City Forecast
