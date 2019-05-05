@@ -5,6 +5,7 @@ var User = require('../../../models').User;
 var Favorite = require('../../../models').Favorite;
 var City = require('../../../models').City;
 
+// Create Favorite
 router.post('/', function(req,res) {
   User.findOne({
     where: {
@@ -32,6 +33,23 @@ router.post('/', function(req,res) {
     };
   });
 });
+
+// Listing Favorites
+router.get('/', function(req,res) {
+  User.findOne({
+    where: {
+      apiKey: req.body.api_key
+    }
+  })
+  .then(user => {
+    Favorite.findAll({where: {UserId: user.id}})
+    .then(favorites => {
+      eval(pry.it)
+      res.setHeader("Content-Type", "application/json");
+      res.status(200).send(JSON.stringify(favorites));
+    })
+  })
+})
 
 
 module.exports = router;
