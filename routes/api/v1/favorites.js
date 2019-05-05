@@ -22,9 +22,8 @@ router.post('/', function(req,res) {
           }
         })
         .then(favorite => {
-          // eval(pry.it)
           res.setHeader("Content-Type", "application/json");
-          res.status(201).send(JSON.stringify({"success":`${city[0].dataValues.name} has been added to your favorites`}))
+          res.status(200).send(JSON.stringify({"message":`${city[0].dataValues.name} has been added to your favorites`}))
         })
       })
     } else {
