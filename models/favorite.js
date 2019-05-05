@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   Favorite.associate = function(models) {
     Favorite.belongsTo(models.User)
-    Favorite.hasMany(models.City)
+    Favorite.belongsTo(models.City)
   };
   return Favorite;
 };
