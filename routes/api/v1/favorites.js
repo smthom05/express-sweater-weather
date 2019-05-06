@@ -7,6 +7,7 @@ var City = require('../../../models').City;
 
 // Create Favorite
 router.post('/', function(req,res) {
+
   User.findOne({
     where: {
       apiKey: req.body.api_key
@@ -42,12 +43,16 @@ router.get('/', function(req,res) {
     }
   })
   .then(user => {
-    Favorite.findAll({where: {UserId: user.id}})
-    .then(favorites => {
-      eval(pry.it)
+    if (user !== null) {
+      Favorite.findAll({where: {UserId: user.id}})
+      .then(favorites => {
+        res.setHeader("Content-Type", "application/json");
+        res.status(200).send(JSON.stringify(favorites));
+      })
+    } else {
       res.setHeader("Content-Type", "application/json");
-      res.status(200).send(JSON.stringify(favorites));
-    })
+      res.status(401).send(JSON.stringify("Invalid API Key"))
+    }
   })
 })
 
