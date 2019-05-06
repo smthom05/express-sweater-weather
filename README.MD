@@ -24,7 +24,7 @@ Express Sweater Weather is a Mod 4 Project at the Turing School of Design. The g
               "password": "password"
               "password_confirmation": "password"
             }
-            
+
       - _Response_
         - status: 201
         - body:
@@ -94,6 +94,7 @@ Express Sweater Weather is a Mod 4 Project at the Turing School of Design. The g
       - _Response_
         - status: 201
         - body:
+        
               {
                 "message": "Denver, CO has been added to your favorites",
               }
