@@ -18,41 +18,52 @@ Express Sweater Weather is a Mod 4 Project at the Turing School of Design. The g
     - `POST /api/v1/users`
       - _Request_
         - body:
+
             {
               "email": "my_email@example.com",
               "password": "password"
               "password_confirmation": "password"
             }
+            
       - _Response_
         - status: 201
         - body:
+
               {
                 "api_key": "jgn983hy48thw9begh98h4539h4",
               }
+
   - Login
     - `POST /api/v1/sessions`
       - _Request_
         - body:
+
               {
                 "email": "my_email@example.com",
                 "password": "password"
               }
+
       - _Response_
         - status: 200
         - body:
+
               {
                 "api_key": "jgn983hy48thw9begh98h4539h4",
               }
+
   - City Forecast
     - `GET /api/v1/forecast?location=locationName`
       - _Request_
         - body:
+
               {
                 "api_key": "jgn983hy48thw9begh98h4539h4"
               }
+
       - _Response_
         - status: 200
         - body:
+
               {
               "location": "Denver, CO",
               "current_weather": {
@@ -69,25 +80,37 @@ Express Sweater Weather is a Mod 4 Project at the Turing School of Design. The g
                 "cloudCover": 1,
                 "visibility": 9.12,
               }
+
   - Favorite City
     - `POST /api/v1/favorites`
       - _Request_
-        - status: 201
         - body:
+
               {
                 "location": "Denver, CO",
                 "api_key": "jgn983hy48thw9begh98h4539h4"
               }
+
+      - _Response_
+        - status: 201
+        - body:
+              {
+                "message": "Denver, CO has been added to your favorites",
+              }
+
   - List User Favorites
     - `GET /api/v1/favorites`
       - _Request_
         - body:
+
               {
                 "api_key": "jgn983hy48thw9begh98h4539h4"
               }
+
       - _Response_
         - status: 200
         - body:
+
               [{
               "location": "Denver, CO",
               "current_weather": {
