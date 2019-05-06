@@ -19,11 +19,11 @@ Express Sweater Weather is a Mod 4 Project at the Turing School of Design. The g
       - _Request_
         - body:
 
-            {
-              "email": "my_email@example.com",
-              "password": "password"
-              "password_confirmation": "password"
-            }
+              {
+                "email": "my_email@example.com",
+                "password": "password"
+                "password_confirmation": "password"
+              }
 
       - _Response_
         - status: 201
